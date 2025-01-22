@@ -1,0 +1,7 @@
+﻿Module OperacionesAdaptadorDatos
+
+
+
+
+
+End Module
