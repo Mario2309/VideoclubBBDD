@@ -27,7 +27,7 @@ Partial Class Form1
         AgregarToolStripMenuItem = New ToolStripMenuItem()
         EliminarToolStripMenuItem = New ToolStripMenuItem()
         ModificarToolStripMenuItem = New ToolStripMenuItem()
-        ListView1 = New ListView()
+        ListaPeliculas = New ListView()
         CH_NUM = New ColumnHeader()
         titulo = New ColumnHeader()
         director = New ColumnHeader()
@@ -58,31 +58,31 @@ Partial Class Form1
         ' AgregarToolStripMenuItem
         ' 
         AgregarToolStripMenuItem.Name = "AgregarToolStripMenuItem"
-        AgregarToolStripMenuItem.Size = New Size(180, 22)
+        AgregarToolStripMenuItem.Size = New Size(125, 22)
         AgregarToolStripMenuItem.Text = "Agregar"
         ' 
         ' EliminarToolStripMenuItem
         ' 
         EliminarToolStripMenuItem.Name = "EliminarToolStripMenuItem"
-        EliminarToolStripMenuItem.Size = New Size(180, 22)
+        EliminarToolStripMenuItem.Size = New Size(125, 22)
         EliminarToolStripMenuItem.Text = "Eliminar"
         ' 
         ' ModificarToolStripMenuItem
         ' 
         ModificarToolStripMenuItem.Name = "ModificarToolStripMenuItem"
-        ModificarToolStripMenuItem.Size = New Size(180, 22)
+        ModificarToolStripMenuItem.Size = New Size(125, 22)
         ModificarToolStripMenuItem.Text = "Modificar"
         ' 
-        ' ListView1
+        ' ListaPeliculas
         ' 
-        ListView1.Columns.AddRange(New ColumnHeader() {CH_NUM, titulo, director, id_genero, ColumnHeader1, publicacion, calificacion})
-        ListView1.GridLines = True
-        ListView1.Location = New Point(57, 84)
-        ListView1.Name = "ListView1"
-        ListView1.Size = New Size(426, 308)
-        ListView1.TabIndex = 1
-        ListView1.UseCompatibleStateImageBehavior = False
-        ListView1.View = View.Details
+        ListaPeliculas.Columns.AddRange(New ColumnHeader() {CH_NUM, titulo, director, id_genero, ColumnHeader1, publicacion, calificacion})
+        ListaPeliculas.GridLines = True
+        ListaPeliculas.Location = New Point(57, 84)
+        ListaPeliculas.Name = "ListaPeliculas"
+        ListaPeliculas.Size = New Size(426, 308)
+        ListaPeliculas.TabIndex = 1
+        ListaPeliculas.UseCompatibleStateImageBehavior = False
+        ListaPeliculas.View = View.Details
         ' 
         ' CH_NUM
         ' 
@@ -113,7 +113,7 @@ Partial Class Form1
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(547, 450)
-        Controls.Add(ListView1)
+        Controls.Add(ListaPeliculas)
         Controls.Add(MenuStrip1)
         MainMenuStrip = MenuStrip1
         Name = "Form1"
@@ -129,7 +129,7 @@ Partial Class Form1
     Friend WithEvents AgregarToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EliminarToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ModificarToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ListView1 As ListView
+    Friend WithEvents ListaPeliculas As ListView
     Friend WithEvents CH_NUM As ColumnHeader
     Friend WithEvents titulo As ColumnHeader
     Friend WithEvents director As ColumnHeader
