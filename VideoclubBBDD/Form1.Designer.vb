@@ -35,13 +35,16 @@ Partial Class Form1
         ColumnHeader1 = New ColumnHeader()
         publicacion = New ColumnHeader()
         calificacion = New ColumnHeader()
+        btnConSQLite = New Button()
+        btnConAccess = New Button()
+        SalirToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         SuspendLayout()
         ' 
         ' MenuStrip1
         ' 
         MenuStrip1.BackColor = Color.White
-        MenuStrip1.Items.AddRange(New ToolStripItem() {OpcionesToolStripMenuItem})
+        MenuStrip1.Items.AddRange(New ToolStripItem() {OpcionesToolStripMenuItem, SalirToolStripMenuItem})
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.Name = "MenuStrip1"
         MenuStrip1.Size = New Size(547, 24)
@@ -108,14 +111,43 @@ Partial Class Form1
         ' 
         calificacion.Text = "Calificaion"
         ' 
+        ' btnConSQLite
+        ' 
+        btnConSQLite.Location = New Point(83, 36)
+        btnConSQLite.Name = "btnConSQLite"
+        btnConSQLite.Size = New Size(138, 33)
+        btnConSQLite.TabIndex = 2
+        btnConSQLite.Text = "Conectar SQLite"
+        btnConSQLite.UseVisualStyleBackColor = True
+        ' 
+        ' btnConAccess
+        ' 
+        btnConAccess.Location = New Point(304, 36)
+        btnConAccess.Name = "btnConAccess"
+        btnConAccess.Size = New Size(138, 33)
+        btnConAccess.TabIndex = 3
+        btnConAccess.Text = "Conectar Access"
+        btnConAccess.UseVisualStyleBackColor = True
+        ' 
+        ' SalirToolStripMenuItem
+        ' 
+        SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
+        SalirToolStripMenuItem.Size = New Size(41, 20)
+        SalirToolStripMenuItem.Text = "Salir"
+        ' 
         ' Form1
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(547, 450)
+        ControlBox = False
+        Controls.Add(btnConAccess)
+        Controls.Add(btnConSQLite)
         Controls.Add(ListaPeliculas)
         Controls.Add(MenuStrip1)
         MainMenuStrip = MenuStrip1
+        MaximizeBox = False
+        MinimizeBox = False
         Name = "Form1"
         Text = "Form1"
         MenuStrip1.ResumeLayout(False)
@@ -137,5 +169,8 @@ Partial Class Form1
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents publicacion As ColumnHeader
     Friend WithEvents calificacion As ColumnHeader
+    Friend WithEvents btnConSQLite As Button
+    Friend WithEvents btnConAccess As Button
+    Friend WithEvents SalirToolStripMenuItem As ToolStripMenuItem
 
 End Class
