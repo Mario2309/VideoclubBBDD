@@ -18,4 +18,14 @@
         ConexionesSQLite.DesconectarBD()
         Close()
     End Sub
+
+    Private Sub ListaPeliculas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListaPeliculas.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub AgregarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AgregarToolStripMenuItem.Click
+        Me.Hide()
+        FormInicial.Show()
+        FormInicial.btn.Text = "Agregar"
+    End Sub
 End Class

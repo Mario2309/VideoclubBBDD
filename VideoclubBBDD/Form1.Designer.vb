@@ -27,17 +27,17 @@ Partial Class Form1
         AgregarToolStripMenuItem = New ToolStripMenuItem()
         EliminarToolStripMenuItem = New ToolStripMenuItem()
         ModificarToolStripMenuItem = New ToolStripMenuItem()
+        SalirToolStripMenuItem = New ToolStripMenuItem()
         ListaPeliculas = New ListView()
         CH_NUM = New ColumnHeader()
         titulo = New ColumnHeader()
         director = New ColumnHeader()
         id_genero = New ColumnHeader()
-        ColumnHeader1 = New ColumnHeader()
         publicacion = New ColumnHeader()
         calificacion = New ColumnHeader()
+        Descripcion = New ColumnHeader()
         btnConSQLite = New Button()
         btnConAccess = New Button()
-        SalirToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -61,24 +61,30 @@ Partial Class Form1
         ' AgregarToolStripMenuItem
         ' 
         AgregarToolStripMenuItem.Name = "AgregarToolStripMenuItem"
-        AgregarToolStripMenuItem.Size = New Size(125, 22)
+        AgregarToolStripMenuItem.Size = New Size(180, 22)
         AgregarToolStripMenuItem.Text = "Agregar"
         ' 
         ' EliminarToolStripMenuItem
         ' 
         EliminarToolStripMenuItem.Name = "EliminarToolStripMenuItem"
-        EliminarToolStripMenuItem.Size = New Size(125, 22)
+        EliminarToolStripMenuItem.Size = New Size(180, 22)
         EliminarToolStripMenuItem.Text = "Eliminar"
         ' 
         ' ModificarToolStripMenuItem
         ' 
         ModificarToolStripMenuItem.Name = "ModificarToolStripMenuItem"
-        ModificarToolStripMenuItem.Size = New Size(125, 22)
+        ModificarToolStripMenuItem.Size = New Size(180, 22)
         ModificarToolStripMenuItem.Text = "Modificar"
+        ' 
+        ' SalirToolStripMenuItem
+        ' 
+        SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
+        SalirToolStripMenuItem.Size = New Size(41, 20)
+        SalirToolStripMenuItem.Text = "Salir"
         ' 
         ' ListaPeliculas
         ' 
-        ListaPeliculas.Columns.AddRange(New ColumnHeader() {CH_NUM, titulo, director, id_genero, ColumnHeader1, publicacion, calificacion})
+        ListaPeliculas.Columns.AddRange(New ColumnHeader() {CH_NUM, titulo, director, id_genero, publicacion, calificacion, Descripcion})
         ListaPeliculas.GridLines = True
         ListaPeliculas.Location = New Point(57, 84)
         ListaPeliculas.Name = "ListaPeliculas"
@@ -111,6 +117,10 @@ Partial Class Form1
         ' 
         calificacion.Text = "Calificaion"
         ' 
+        ' Descripcion
+        ' 
+        Descripcion.Text = "Descipcion"
+        ' 
         ' btnConSQLite
         ' 
         btnConSQLite.Location = New Point(83, 36)
@@ -128,12 +138,6 @@ Partial Class Form1
         btnConAccess.TabIndex = 3
         btnConAccess.Text = "Conectar Access"
         btnConAccess.UseVisualStyleBackColor = True
-        ' 
-        ' SalirToolStripMenuItem
-        ' 
-        SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
-        SalirToolStripMenuItem.Size = New Size(41, 20)
-        SalirToolStripMenuItem.Text = "Salir"
         ' 
         ' Form1
         ' 
@@ -166,7 +170,7 @@ Partial Class Form1
     Friend WithEvents titulo As ColumnHeader
     Friend WithEvents director As ColumnHeader
     Friend WithEvents id_genero As ColumnHeader
-    Friend WithEvents ColumnHeader1 As ColumnHeader
+    Friend WithEvents Descripcion As ColumnHeader
     Friend WithEvents publicacion As ColumnHeader
     Friend WithEvents calificacion As ColumnHeader
     Friend WithEvents btnConSQLite As Button
