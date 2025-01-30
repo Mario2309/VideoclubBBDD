@@ -3,7 +3,8 @@
 Module ConexionesAccess
 
     Public conexionNueva As OleDbConnection
-    Public cadenaConexion As String = "Provider=Microsoft.Jet.Oledb.4.0; Data Source=C:\Users\alvar\OneDrive\Escritorio\VideoClubBBDD.mdb"
+    Public cadenaConexion As String = "Provider=Microsoft.Jet.Oledb.4.0; Data Source=C:\Users\alvar\Source\Repos\Mario2309\VideoclubBBDD\VideoclubBBDD\VideoClubBBDD.mdb"
+    'Public cadenaConexion As String = "Provider=Microsoft.Jet.Oledb.4.0; Data Source=" & IO.Path.Combine(Application.StartupPath, "VideoClubBBDD.mdb")
 
     Public AdaptadorDatosPeliculas As OleDbDataAdapter
     Public DatosConjuntosPeliculas As New DataSet()

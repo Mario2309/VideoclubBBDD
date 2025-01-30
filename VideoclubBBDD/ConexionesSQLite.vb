@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SQLite
 Module ConexionesSQLite
-    Public CadenaConexion As String = "Data Source=C:\Users\Diurno\Desktop\videoclub.db; Version=3"
+    'Public CadenaConexion As String = "Data Source=C:\Users\Diurno\Desktop\videoclub.db; Version=3"
+    Public CadenaConexion As String = "Data Source=C:\Users\alvar\Source\Repos\Mario2309\VideoclubBBDD\VideoclubBBDD\videoclub.db; Version=3"
     Public ConexionNueva As New SQLiteConnection(CadenaConexion)
 
     Public AdaptadorDatosPelis As SQLiteDataAdapter
