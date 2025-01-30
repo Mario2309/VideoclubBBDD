@@ -3,25 +3,38 @@
 Module ConexionesAccess
 
     Public conexionNueva As OleDbConnection
-    Public cadenaConexion As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\alvar\OneDrive\Escritorio\DBVideoClub.accdb"
+    Public cadenaConexion As String = "Provider=Microsoft.Jet.Oledb.4.0; Data Source=C:\Users\alvar\OneDrive\Escritorio\VideoClubBBDD.mdb"
 
     Public AdaptadorDatosPeliculas As OleDbDataAdapter
     Public DatosConjuntosPeliculas As New DataSet()
 
+    Public CadenaConsultar As String = "select * from Peliculas"
+    Public CadenaInsertarReg As String = "insert into Peliculas values (@idP, @Tl, @Dir, @IdGen, @Anio, @Cal, @Desc)"
+
+
     Public Sub conectar()
+
         Try
             If conexionNueva Is Nothing Then
                 conexionNueva = New OleDbConnection(cadenaConexion)
             End If
 
             If conexionNueva.State <> ConnectionState.Open Then
+
                 conexionNueva.Open()
-                MsgBox("Conexión establecida correctamente.")
-            Else
-                MsgBox("La conexión ya está abierta.")
+                MsgBox("Conectado correctamente.", vbInformation, "Conexión Exitosa")
+
+                AdaptadorDatosPeliculas = New OleDbDataAdapter(CadenaConsultar, conexionNueva)
+                DatosConjuntosPeliculas = New DataSet
+                AdaptadorDatosPeliculas.Fill(DatosConjuntosPeliculas, "Peliculas")
             End If
+
         Catch ex As Exception
-            MsgBox("No se pudo establecer conexión. Error: " & ex.Message)
+            MsgBox("No se pudo conectar: " & ex.Message, vbCritical, "Error de Conexión")
+        Finally
+            If conexionNueva.State = ConnectionState.Open Then
+                conexionNueva.Close()
+            End If
         End Try
     End Sub
 
@@ -35,6 +48,7 @@ Module ConexionesAccess
             MsgBox("Error al cerrar la conexión: " & ex.Message)
         End Try
     End Sub
+
 
 
     Public Sub cargarListView()
@@ -59,23 +73,105 @@ Module ConexionesAccess
         Next
     End Sub
 
-
-    Public Sub cargarDatosPeliculas()
+    Public Sub AgregarConDataAdpater()
         Try
-            If conexionNueva Is Nothing OrElse conexionNueva.State <> ConnectionState.Open Then
-                conectar() ' Asegurar que la conexión esté abierta
+            ' Verificar conexión
+            If conexionNueva.State = ConnectionState.Closed Then
+                conexionNueva.Open()
             End If
 
-            AdaptadorDatosPeliculas = New OleDbDataAdapter("SELECT * FROM Peliculas", conexionNueva)
-            If DatosConjuntosPeliculas IsNot Nothing Then DatosConjuntosPeliculas.Clear()
-            AdaptadorDatosPeliculas.Fill(DatosConjuntosPeliculas)
+            ' Validar campos
+            validarCampos()
 
-            MsgBox("Datos cargados correctamente.")
+            ' Convertir valores numéricos con seguridad
+            Dim anio As Integer
+            Dim calificacion As Decimal
+
+            If Not Integer.TryParse(FormInicial.txAnio.Text, anio) Then
+                MessageBox.Show("Año debe ser un número válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            If Not Decimal.TryParse(FormInicial.txCalific.Text, calificacion) Then
+                MessageBox.Show("Calificación debe ser un número válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            ' Obtener el último ID registrado
+            Dim ultimoID As Integer = 0
+            Dim comandoID As New OleDbCommand("SELECT MAX(num_registro) FROM peliculas", conexionNueva)
+            Dim resultado As Object = comandoID.ExecuteScalar()
+
+            If resultado IsNot DBNull.Value AndAlso resultado IsNot Nothing Then
+                ultimoID = Convert.ToInt32(resultado)
+            End If
+
+            ' Nuevo ID calculado
+            Dim nuevoID As Integer = ultimoID + 1
+
+            ' Crear comando SQL
+            Dim Comando As New OleDbCommand(CadenaInsertarReg, conexionNueva)
+            AdaptadorDatosPeliculas.InsertCommand = Comando
+
+            ' Asignar parámetros
+            Comando.Parameters.AddWithValue("@idP", nuevoID)
+            Comando.Parameters.AddWithValue("@Tl", FormInicial.txTitulo.Text.Trim())
+            Comando.Parameters.AddWithValue("@Dir", FormInicial.txDirector.Text.Trim())
+            Comando.Parameters.AddWithValue("@IdGen", FormInicial.txGen.Text.Trim())
+            Comando.Parameters.AddWithValue("@Anio", anio)
+            Comando.Parameters.AddWithValue("@Cal", calificacion)
+            Comando.Parameters.AddWithValue("@Desc", FormInicial.txDescp.Text.Trim())
+
+            ' Ejecutar la consulta
+            Dim filasAfectadas As Integer = Comando.ExecuteNonQuery()
+
+            If filasAfectadas > 0 Then
+                MessageBox.Show("Película agregada correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                limpiarCampos()
+            Else
+                MessageBox.Show("No se pudo agregar la película", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
+
         Catch ex As Exception
-            MsgBox("Error al cargar datos: " & ex.Message)
+            MessageBox.Show("Error al agregar datos: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
-            desconectar() ' Cerrar conexión al finalizar
+            ' Cerrar conexión
+            If conexionNueva.State = ConnectionState.Open Then
+                conexionNueva.Close()
+            End If
         End Try
+    End Sub
+
+    Private Sub validarCampos()
+        If String.IsNullOrWhiteSpace(FormInicial.txTitulo.Text) OrElse
+                   String.IsNullOrWhiteSpace(FormInicial.txDirector.Text) OrElse
+                   String.IsNullOrWhiteSpace(FormInicial.txGen.Text) OrElse
+                   String.IsNullOrWhiteSpace(FormInicial.txAnio.Text) OrElse
+                   String.IsNullOrWhiteSpace(FormInicial.txCalific.Text) OrElse
+                   String.IsNullOrWhiteSpace(FormInicial.txDescp.Text) Then
+
+            MessageBox.Show("Todos los campos deben estar completos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Exit Sub
+        End If
+    End Sub
+
+    Private Sub limpiarCampos()
+        FormInicial.txTitulo.Clear()
+        FormInicial.txDirector.Clear()
+        FormInicial.txGen.Clear()
+        FormInicial.txAnio.Clear()
+        FormInicial.txCalific.Clear()
+        FormInicial.txDescp.Clear()
+    End Sub
+
+    Public Sub visualizarRegistroDataAdapter(indice As Integer)
+        FormInicial.LabelMostrId.Text = DatosConjuntosPelis.Tables(0).Rows(indice).Item(0)
+        FormInicial.txTitulo.Text = DatosConjuntosPelis.Tables(0).Rows(indice).Item(1)
+        FormInicial.txDirector.Text = DatosConjuntosPelis.Tables(0).Rows(indice).Item(2)
+        FormInicial.txGen.Text = DatosConjuntosPelis.Tables(0).Rows(indice).Item(3)
+        FormInicial.txAnio.Text = DatosConjuntosPelis.Tables(0).Rows(indice).Item(4)
+        FormInicial.txCalific.Text = DatosConjuntosPelis.Tables(0).Rows(indice).Item(5)
+        FormInicial.txDescp.Text = DatosConjuntosPelis.Tables(0).Rows(indice).Item(6)
     End Sub
 
 

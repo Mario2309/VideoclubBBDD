@@ -23,6 +23,7 @@ Partial Class FormInicial
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         MenuStrip1 = New MenuStrip()
+        InicioToolStripMenuItem = New ToolStripMenuItem()
         OpcionesToolStripMenuItem = New ToolStripMenuItem()
         AgregarToolStripMenuItem = New ToolStripMenuItem()
         EliminarToolStripMenuItem = New ToolStripMenuItem()
@@ -42,19 +43,29 @@ Partial Class FormInicial
         Label3 = New Label()
         Label4 = New Label()
         Label6 = New Label()
-        btn = New Button()
+        btnSqlite = New Button()
+        btnAcces = New Button()
+        ComboBoxIdSQLite = New ComboBox()
+        ComboBoxIdAccess = New ComboBox()
+        btnBuscar = New Button()
         MenuStrip1.SuspendLayout()
         SuspendLayout()
         ' 
         ' MenuStrip1
         ' 
         MenuStrip1.BackColor = Color.White
-        MenuStrip1.Items.AddRange(New ToolStripItem() {OpcionesToolStripMenuItem, SalirToolStripMenuItem})
+        MenuStrip1.Items.AddRange(New ToolStripItem() {InicioToolStripMenuItem, OpcionesToolStripMenuItem, SalirToolStripMenuItem})
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.Name = "MenuStrip1"
         MenuStrip1.Size = New Size(547, 24)
         MenuStrip1.TabIndex = 1
         MenuStrip1.Text = "MenuStrip1"
+        ' 
+        ' InicioToolStripMenuItem
+        ' 
+        InicioToolStripMenuItem.Name = "InicioToolStripMenuItem"
+        InicioToolStripMenuItem.Size = New Size(48, 20)
+        InicioToolStripMenuItem.Text = "Inicio"
         ' 
         ' OpcionesToolStripMenuItem
         ' 
@@ -152,7 +163,7 @@ Partial Class FormInicial
         LabelTitle.AutoSize = True
         LabelTitle.Location = New Point(285, 65)
         LabelTitle.Name = "LabelTitle"
-        LabelTitle.Size = New Size(43, 15)
+        LabelTitle.Size = New Size(44, 15)
         LabelTitle.TabIndex = 12
         LabelTitle.Text = "Titulo :"
         ' 
@@ -195,20 +206,54 @@ Partial Class FormInicial
         ' Label6
         ' 
         Label6.AutoSize = True
-        Label6.Location = New Point(45, 272)
+        Label6.Location = New Point(37, 272)
         Label6.Name = "Label6"
-        Label6.Size = New Size(43, 15)
+        Label6.Size = New Size(75, 15)
         Label6.TabIndex = 18
-        Label6.Text = "Titulo :"
+        Label6.Text = "Descripcion :"
         ' 
-        ' btn
+        ' btnSqlite
         ' 
-        btn.Location = New Point(216, 364)
-        btn.Name = "btn"
-        btn.Size = New Size(130, 44)
-        btn.TabIndex = 19
-        btn.Text = "Button1"
-        btn.UseVisualStyleBackColor = True
+        btnSqlite.Location = New Point(93, 368)
+        btnSqlite.Name = "btnSqlite"
+        btnSqlite.Size = New Size(130, 44)
+        btnSqlite.TabIndex = 19
+        btnSqlite.Text = "Button1"
+        btnSqlite.UseVisualStyleBackColor = True
+        ' 
+        ' btnAcces
+        ' 
+        btnAcces.Location = New Point(351, 368)
+        btnAcces.Name = "btnAcces"
+        btnAcces.Size = New Size(130, 44)
+        btnAcces.TabIndex = 20
+        btnAcces.Text = "Button1"
+        btnAcces.UseVisualStyleBackColor = True
+        ' 
+        ' ComboBoxIdSQLite
+        ' 
+        ComboBoxIdSQLite.FormattingEnabled = True
+        ComboBoxIdSQLite.Location = New Point(123, 62)
+        ComboBoxIdSQLite.Name = "ComboBoxIdSQLite"
+        ComboBoxIdSQLite.Size = New Size(47, 23)
+        ComboBoxIdSQLite.TabIndex = 21
+        ' 
+        ' ComboBoxIdAccess
+        ' 
+        ComboBoxIdAccess.FormattingEnabled = True
+        ComboBoxIdAccess.Location = New Point(123, 62)
+        ComboBoxIdAccess.Name = "ComboBoxIdAccess"
+        ComboBoxIdAccess.Size = New Size(47, 23)
+        ComboBoxIdAccess.TabIndex = 22
+        ' 
+        ' btnBuscar
+        ' 
+        btnBuscar.Location = New Point(176, 62)
+        btnBuscar.Name = "btnBuscar"
+        btnBuscar.Size = New Size(63, 23)
+        btnBuscar.TabIndex = 23
+        btnBuscar.Text = "Buscar"
+        btnBuscar.UseVisualStyleBackColor = True
         ' 
         ' FormInicial
         ' 
@@ -216,7 +261,11 @@ Partial Class FormInicial
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(547, 450)
         ControlBox = False
-        Controls.Add(btn)
+        Controls.Add(btnBuscar)
+        Controls.Add(ComboBoxIdAccess)
+        Controls.Add(ComboBoxIdSQLite)
+        Controls.Add(btnAcces)
+        Controls.Add(btnSqlite)
         Controls.Add(Label6)
         Controls.Add(Label4)
         Controls.Add(Label3)
@@ -262,5 +311,10 @@ Partial Class FormInicial
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label6 As Label
-    Friend WithEvents btn As Button
+    Friend WithEvents btnSqlite As Button
+    Friend WithEvents btnAcces As Button
+    Friend WithEvents InicioToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ComboBoxIdSQLite As ComboBox
+    Friend WithEvents ComboBoxIdAccess As ComboBox
+    Friend WithEvents btnBuscar As Button
 End Class

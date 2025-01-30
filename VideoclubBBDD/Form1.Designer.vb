@@ -26,7 +26,11 @@ Partial Class Form1
         OpcionesToolStripMenuItem = New ToolStripMenuItem()
         AgregarToolStripMenuItem = New ToolStripMenuItem()
         EliminarToolStripMenuItem = New ToolStripMenuItem()
+        SQLiteToolStripMenuItem1 = New ToolStripMenuItem()
+        AccessToolStripMenuItem1 = New ToolStripMenuItem()
         ModificarToolStripMenuItem = New ToolStripMenuItem()
+        SQLiteToolStripMenuItem = New ToolStripMenuItem()
+        AccessToolStripMenuItem = New ToolStripMenuItem()
         SalirToolStripMenuItem = New ToolStripMenuItem()
         ListaPeliculas = New ListView()
         CH_NUM = New ColumnHeader()
@@ -66,15 +70,41 @@ Partial Class Form1
         ' 
         ' EliminarToolStripMenuItem
         ' 
+        EliminarToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {SQLiteToolStripMenuItem1, AccessToolStripMenuItem1})
         EliminarToolStripMenuItem.Name = "EliminarToolStripMenuItem"
         EliminarToolStripMenuItem.Size = New Size(180, 22)
         EliminarToolStripMenuItem.Text = "Eliminar"
         ' 
+        ' SQLiteToolStripMenuItem1
+        ' 
+        SQLiteToolStripMenuItem1.Name = "SQLiteToolStripMenuItem1"
+        SQLiteToolStripMenuItem1.Size = New Size(180, 22)
+        SQLiteToolStripMenuItem1.Text = "SQLite"
+        ' 
+        ' AccessToolStripMenuItem1
+        ' 
+        AccessToolStripMenuItem1.Name = "AccessToolStripMenuItem1"
+        AccessToolStripMenuItem1.Size = New Size(180, 22)
+        AccessToolStripMenuItem1.Text = "Access"
+        ' 
         ' ModificarToolStripMenuItem
         ' 
+        ModificarToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {SQLiteToolStripMenuItem, AccessToolStripMenuItem})
         ModificarToolStripMenuItem.Name = "ModificarToolStripMenuItem"
         ModificarToolStripMenuItem.Size = New Size(180, 22)
         ModificarToolStripMenuItem.Text = "Modificar"
+        ' 
+        ' SQLiteToolStripMenuItem
+        ' 
+        SQLiteToolStripMenuItem.Name = "SQLiteToolStripMenuItem"
+        SQLiteToolStripMenuItem.Size = New Size(110, 22)
+        SQLiteToolStripMenuItem.Text = "SQLite"
+        ' 
+        ' AccessToolStripMenuItem
+        ' 
+        AccessToolStripMenuItem.Name = "AccessToolStripMenuItem"
+        AccessToolStripMenuItem.Size = New Size(110, 22)
+        AccessToolStripMenuItem.Text = "Access"
         ' 
         ' SalirToolStripMenuItem
         ' 
@@ -176,5 +206,9 @@ Partial Class Form1
     Friend WithEvents btnConSQLite As Button
     Friend WithEvents btnConAccess As Button
     Friend WithEvents SalirToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SQLiteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AccessToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SQLiteToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents AccessToolStripMenuItem1 As ToolStripMenuItem
 
 End Class
